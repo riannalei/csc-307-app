@@ -1,6 +1,7 @@
 // src/MyApp.jsx
 import React, { useState } from "react";
 import Table from "./Table";
+
 const characters = [
     {
       name: "Charlie",
@@ -42,8 +43,14 @@ const characters = [
         characterData={characters}
         removeCharacter={removeOneCharacter}
       />
+      <Form />
     </div>
   );
+
+// src/MyApp.jsx (a new function inside the MyApp function)
+function updateList(person) {
+    setCharacters([...characters, person]);
+  }
   
 
 export default MyApp;
