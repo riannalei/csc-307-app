@@ -1,20 +1,28 @@
 // src/Form.jsx
 import React, { useState } from "react";
 
-function Form() {
+function Form(props) {
   const [person, setPerson] = useState({
     name: "",
     job: ""
   });
-}
 
-function handleChange(event) {
+  function handleChange(event) {
     const { name, value } = event.target;
     if (name === "job")
-      setPerson({ name: person["name"], job: value });
-    else setPerson({ name: value, job: person["job"] });
+      setPerson({ name: person.name, job: value });
+    else setPerson({ name: value, job: person.job });
   }
 
+  function submitForm() {
+    if (!person.name || !person.job) {
+      alert("Both name and job fields are required.");
+      return;
+    }
+    props.handleSubmit(person);
+    setPerson({ name: "", job: "" }); 
+  }
+  
 
   return (
     <form>
@@ -34,13 +42,9 @@ function handleChange(event) {
         value={person.job}
         onChange={handleChange}
       />
+      <input type="button" value="Submit" onClick={submitForm} />
     </form>
   );
-  
-  function submitForm() {
-    props.handleSubmit(person);
-    setPerson({ name: "", job: "" });
-  }
-  
-export default Form;
+}
 
+export default Form;
