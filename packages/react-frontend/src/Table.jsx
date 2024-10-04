@@ -1,46 +1,44 @@
-// src/Table.jsx
 import React from "react";
 
-function TableHeader() {
+const TableHeader = () => {
   return (
     <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Job</th>
         <th>Remove</th>
       </tr>
     </thead>
   );
-}
+};
 
-function TableBody(props) {
-  const rows = props.characterData
-    .filter(row => row.name && row.job)  
-    .map((row, index) => {
-      return (
-        <tr key={index}>
-          <td>{row.name}</td>
-          <td>{row.job}</td>
-          <td>
-            <button onClick={() => props.removeCharacter(index)}>Delete</button>
-          </td>
-        </tr>
-      );
-    });
+const TableBody = (props) => {
+  const rows = props.characterData.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.id}</td> {/* Display the ID */}
+        <td>{row.name}</td>
+        <td>{row.job}</td>
+        <td>
+          <button onClick={() => props.removeCharacter(index)}>Delete</button>
+        </td>
+      </tr>
+    );
+  });
+
   return <tbody>{rows}</tbody>;
-}
+};
 
+const Table = (props) => {
+  const { characterData, removeCharacter } = props;
 
-function Table(props) {
   return (
     <table>
       <TableHeader />
-      <TableBody
-        characterData={props.characterData}
-        removeCharacter={props.removeCharacter}
-      />
+      <TableBody characterData={characterData} removeCharacter={removeCharacter} />
     </table>
   );
-}
+};
 
 export default Table;
