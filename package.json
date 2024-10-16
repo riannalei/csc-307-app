@@ -1,14 +1,21 @@
 {
   "name": "csc-307-app",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
-    "dev": "cd packages/react-frontend && npm run dev", 
+    "dev:frontend": "cd packages/react-frontend && npm run dev",
+    "dev:backend": "cd packages/express-backend && npm run dev",
+    "start": "npm run dev:frontend & npm run dev:backend",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },  
+  },
   "author": "",
   "license": "ISC",
   "description": "",
   "workspaces": [
-      "packages/*"
-  ]
+    "packages/*"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
 }
