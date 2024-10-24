@@ -16,12 +16,13 @@ const TableHeader = () => {
 const TableBody = (props) => {
   const rows = props.characterData.map((row, index) => {
     return (
-      <tr key={index}>
-        <td>{row.id}</td> {/* Display the ID */}
+      <tr key={row._id}> 
+        <td>{row._id}</td> 
         <td>{row.name}</td>
         <td>{row.job}</td>
         <td>
-          <button onClick={() => props.removeCharacter(index)}>Delete</button>
+          {/* Pass _id to removeCharacter function */}
+          <button onClick={() => props.removeCharacter(row._id)}>Delete</button>
         </td>
       </tr>
     );
@@ -29,6 +30,7 @@ const TableBody = (props) => {
 
   return <tbody>{rows}</tbody>;
 };
+
 
 const Table = (props) => {
   const { characterData, removeCharacter } = props;
